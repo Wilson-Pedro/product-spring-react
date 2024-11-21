@@ -1,4 +1,4 @@
-package com.springreact.product.models;
+package com.springreact.product.domain.models;
 
 import java.io.Serializable;
 

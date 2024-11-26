@@ -1,0 +1,14 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: rgb(47, 47, 47);
+    color: white;
+    font-weight: bold;
+}
+
+.table tbody tr {
+    border-top: .5px solid black;
+}

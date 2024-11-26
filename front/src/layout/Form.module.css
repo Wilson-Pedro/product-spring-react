@@ -1,0 +1,30 @@
+.form {  
+}
+
+.divInput {
+    height: 100%;
+    margin-top: 12%;
+}
+
+.input {
+    border: none;
+    background-color: rgb(225, 225, 225);
+    padding: 10px;
+}
+
+.label {
+    font-weight: 600;
+}
+
+.button {
+    background-color: rgb(48, 210, 48);
+    color: white;
+    font-weight: bold;
+    padding: 6%;
+    margin-top: 12%;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(20, 93, 20);
+}

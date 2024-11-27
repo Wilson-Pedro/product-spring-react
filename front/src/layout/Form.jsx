@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import styles from './Form.module.css';
 
-export default function Form() {
+export default function Form({ handleSubmit, productData }) {
 
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState(0);
-    const [quantity, setQuantity] = useState(0);
+    const [product, setProduct] = useState(productData || {});
+
+    const submit = (e) => {
+        e.preventDefault();
+        handleSubmit(product)
+        setProduct([])
+    }
+
+    function handleChange(e) {
+        setProduct({ ...product, [e.target.name]: e.target.value })
+    }
 
     return (
-        <form className={styles.form} >
+        <form onSubmit={submit} className={styles.form} >
             <div className={styles.divInput}>
                 <label className={styles.label} htmlFor="">Product Name: </label> <br/>
                 <input
                     className={styles.input}
                     type="text"
-                    id="productName"
-                    name="productName"
+                    id="name"
+                    name="name"
                     placeholder="product name"
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={handleChange}
+                    value={product.name ? product.name : ''}
                 />
             </div>
 
@@ -29,7 +38,8 @@ export default function Form() {
                     id="price"
                     name="price"
                     placeholder="price"
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={handleChange}
+                    value={product.price ? product.price : ''}
                 />
             </div>
 
@@ -41,7 +51,8 @@ export default function Form() {
                     id="quantity"
                     name="quantity"
                     placeholder="quantity"
-                    onChange={(e) => setQuantity(e.target.value)}
+                    onChange={handleChange}
+                    value={product.quantity ? product.quantity : ''}
                 />
             </div>
 

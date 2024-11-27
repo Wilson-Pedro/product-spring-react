@@ -21,7 +21,6 @@ import com.springreact.product.servicies.ProductService;
 @RestController
 @RequestMapping("/products")
 @CrossOrigin(origins = "http://localhost:3000")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
 
 	@Autowired

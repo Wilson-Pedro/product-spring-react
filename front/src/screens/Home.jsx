@@ -23,7 +23,7 @@ export default function Home() {
                 <Form handleSubmit={productRegister} />
             </div>
             <div className={styles.divTable}>
-                <Table />
+                <Table/>
             </div>
         </div>
     )

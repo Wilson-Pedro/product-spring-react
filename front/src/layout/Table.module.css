@@ -12,3 +12,7 @@
 .table tbody tr {
     border-top: .5px solid black;
 }
+
+.icon {
+    cursor: pointer;
+}

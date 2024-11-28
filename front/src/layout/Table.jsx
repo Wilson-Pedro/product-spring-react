@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from './Table.module.css';
-
+import { FaEdit } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 
 export default function Table() {
 
@@ -27,6 +28,8 @@ export default function Table() {
                 <th>Product Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +39,8 @@ export default function Table() {
                     <th>{product.name}</th>
                     <th>{product.price}</th>
                     <th>{product.quantity}</th>
+                    <th><FaEdit /></th>
+                    <th><FaTrashAlt /></th>
                 </tr>
             ))}
         </tbody>

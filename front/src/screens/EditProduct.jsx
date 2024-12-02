@@ -9,9 +9,6 @@ export default function EditProduct() {
     const { product } = location.state || {};
 
     function updateProduct(productData) {
-        
-        let url = `http://localhost:8080/products/${productData.id}`;
-        console.log(url);
 
         fetch(`http://localhost:8080/products/${productData.id}`, {
             method: 'PUT',

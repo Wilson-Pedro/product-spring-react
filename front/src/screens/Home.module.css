@@ -14,3 +14,16 @@
 .divTable {
     width: 90%;
 }
+
+.button {
+    background-color: rgb(48, 210, 48);
+    color: white;
+    font-weight: bold;
+    padding: 6%;
+    margin: 5%;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(20, 93, 20);
+}

@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import styles from './Form.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Form({ handleSubmit, productData }) {
 
     const [product, setProduct] = useState(productData || {});
 
+    const navigate = useNavigate();
+
     const submit = (e) => {
         e.preventDefault();
         handleSubmit(product)
         setProduct([])
+        navigate("/")
     }
 
     function handleChange(e) {

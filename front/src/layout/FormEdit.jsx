@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './Form.module.css';
+import { useNavigate } from "react-router-dom";
 
-export default function FormEdit({ handleUpdate, productData }) {
+export default function FormEdit({ productData, productUpdate }) {
 
     const [product, setProduct] = useState(productData || {});
 
+    const navigate = useNavigate();
+
+    function goBack() {
+        setProduct(productData)
+        navigate("/");
+    }
+
+    useEffect(() => {
+        setProduct(productData || {})
+    }, [productData])
+
     const update = (e) => {
         e.preventDefault();
-        handleUpdate();
+        productUpdate(product);
+        navigate("/");
     }
 
     function handleChange(e) {
@@ -28,7 +41,7 @@ export default function FormEdit({ handleUpdate, productData }) {
                     name="name"
                     placeholder="product name"
                     onChange={handleChange}
-                    value={product.name ? product.name : ''}
+                    value={product.name || ''}
                 />
             </div>
 
@@ -41,7 +54,7 @@ export default function FormEdit({ handleUpdate, productData }) {
                     name="price"
                     placeholder="price"
                     onChange={handleChange}
-                    value={product.price ? product.price : ''}
+                    value={product.price || ''}
                 />
             </div>
 
@@ -54,11 +67,12 @@ export default function FormEdit({ handleUpdate, productData }) {
                     name="quantity"
                     placeholder="quantity"
                     onChange={handleChange}
-                    value={product.quantity ? product.quantity : ''}
+                    value={product.quantity || ''}
                 />
             </div>
 
-            <button className={styles.button}>Cadastrar</button>
+            <button className={styles.button}>Atualizar</button>
+            <button className={styles.button} onClick={() => goBack()}>Voltar</button>
         </form>
     )
 }

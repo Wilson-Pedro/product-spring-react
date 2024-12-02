@@ -10,8 +10,8 @@ export default function Table() {
 
     const navigate = useNavigate();
 
-    const goToProductEdit = () => {
-        navigate("/productEdit");
+    function goToProductEdit(product) {
+        navigate("/productEdit", { state: { product } });
     }
 
     useEffect(() => {
@@ -40,21 +40,13 @@ export default function Table() {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th>1</th>
-                <th>Computer</th>
-                <th>1500</th>
-                <th>1</th>
-                <th className={styles.icon}  onClick={goToProductEdit}><FaEdit /></th>
-                <th className={styles.icon} ><FaTrashAlt /></th>
-            </tr>
             {products.map((product) => (
-                <tr>
+                <tr key={product.id}>
                     <th>{product.id}</th>
                     <th>{product.name}</th>
                     <th>{product.price}</th>
                     <th>{product.quantity}</th>
-                    <th className={styles.icon} onClick={goToProductEdit}><FaEdit /></th>
+                    <th className={styles.icon} onClick={() => goToProductEdit(product)}><FaEdit /></th>
                     <th className={styles.icon} ><FaTrashAlt /></th>
                 </tr>
             ))}

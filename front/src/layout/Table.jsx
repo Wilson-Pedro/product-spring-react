@@ -10,8 +10,20 @@ export default function Table() {
 
     const navigate = useNavigate();
 
+    let index = 1;
+
+    function incrementIndex() {
+        index++;
+    }
+
     function goToProductEdit(product) {
         navigate("/productEdit", { state: { product } });
+    }
+
+    function deleteProduct(id) {
+        fetch(`http://localhost:8080/products/${id}`, {
+            method: 'DELETE',
+        }).then((resp) => resp.json()).catch((err) => console.log(err))
     }
 
     useEffect(() => {
@@ -42,12 +54,13 @@ export default function Table() {
         <tbody>
             {products.map((product) => (
                 <tr key={product.id}>
-                    <th>{product.id}</th>
+                    <th>{index}</th>
                     <th>{product.name}</th>
                     <th>{product.price}</th>
                     <th>{product.quantity}</th>
                     <th className={styles.icon} onClick={() => goToProductEdit(product)}><FaEdit /></th>
-                    <th className={styles.icon} ><FaTrashAlt /></th>
+                    <th className={styles.icon} onClick={() => deleteProduct(product.id)}><FaTrashAlt /></th>
+                    {incrementIndex()}
                 </tr>
             ))}
         </tbody>

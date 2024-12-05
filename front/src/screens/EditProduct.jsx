@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './EditProduct.module.css';
-import FormEdit from '../layout/FormEdit'
+import FormEdit from '../layout/FormEdit';
 import { useLocation } from "react-router-dom";
 
 export default function EditProduct() {

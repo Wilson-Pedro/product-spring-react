@@ -1,4 +1,16 @@
-.form {  
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .divInput {
@@ -16,6 +28,14 @@
     font-weight: 600;
 }
 
+.divBtn {
+    width: 13%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
 .button {
     background-color: rgb(48, 210, 48);
     color: white;
@@ -23,6 +43,7 @@
     padding: 6%;
     margin: 5%;
     cursor: pointer;
+    flex-direction: row;
 }
 
 .button:hover {

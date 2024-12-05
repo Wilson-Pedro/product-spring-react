@@ -1,5 +1,4 @@
 import React from "react";
-import Form from "../layout/Form"
 import styles from './Home.module.css';
 import Table from './../layout/Table';
 import { useNavigate } from 'react-router-dom';

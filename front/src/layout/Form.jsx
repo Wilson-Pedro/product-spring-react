@@ -19,48 +19,52 @@ export default function Form({ handleSubmit, productData }) {
         setProduct({ ...product, [e.target.name]: e.target.value })
     }
 
+    function goBack() {
+        navigate("/");
+    }
+
     return (
-        <form onSubmit={submit} className={styles.form} >
-            <div className={styles.divInput}>
-                <label className={styles.label} htmlFor="">Product Name: </label> <br/>
-                <input
-                    className={styles.input}
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="product name"
-                    onChange={handleChange}
-                    value={product.name ? product.name : ''}
-                />
-            </div>
-
-            <div className={styles.divInput}>
-                <label className={styles.label} htmlFor="">Price: </label> <br/>
-                <input
-                    className={styles.input}
-                    type="text"
-                    id="price"
-                    name="price"
-                    placeholder="price"
-                    onChange={handleChange}
-                    value={product.price ? product.price : ''}
-                />
-            </div>
-
-            <div className={styles.divInput}>
-                <label className={styles.label} htmlFor="">Quantity: </label> <br/>
-                <input
-                    className={styles.input}
-                    type="text"
-                    id="quantity"
-                    name="quantity"
-                    placeholder="quantity"
-                    onChange={handleChange}
-                    value={product.quantity ? product.quantity : ''}
-                />
-            </div>
-
-            <button className={styles.button}>Cadastrar</button>
-        </form>
+        <div className={styles.container}>
+            <form onSubmit={submit} className={styles.form} >
+                <div className={styles.divInput}>
+                    <label className={styles.label} htmlFor="">Product Name: </label> <br/>
+                    <input
+                        className={styles.input}
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="product name"
+                        onChange={handleChange}
+                        value={product.name ? product.name : ''}
+                    />
+                </div>
+                <div className={styles.divInput}>
+                    <label className={styles.label} htmlFor="">Price: </label> <br/>
+                    <input
+                        className={styles.input}
+                        type="text"
+                        id="price"
+                        name="price"
+                        placeholder="price"
+                        onChange={handleChange}
+                        value={product.price ? product.price : ''}
+                    />
+                </div>
+                <div className={styles.divInput}>
+                    <label className={styles.label} htmlFor="">Quantity: </label> <br/>
+                    <input
+                        className={styles.input}
+                        type="text"
+                        id="quantity"
+                        name="quantity"
+                        placeholder="quantity"
+                        onChange={handleChange}
+                        value={product.quantity ? product.quantity : ''}
+                    />
+                </div>
+                <button className={styles.button}>Cadastrar</button>
+            </form>
+            <div className={styles.divBtn}><button className={styles.button} onClick={() => goBack()}>Cancelar</button></div>
+        </div>
     )
 }

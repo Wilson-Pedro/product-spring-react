@@ -24,7 +24,7 @@ export default function ProductDelete() {
     return (
         <div className={styles.container}>
             <div className={styles.container2}>
-                <h2>Tem certeza que quer deletar? {id}</h2>
+                <h2>Tem certeza que quer deletar? </h2>
                 <div className={styles.divBtn}>
                     <button className={styles.button} onClick={() => deleteProduct()}>Deletar</button>
                     <button className={styles.button} onClick={() => goBack()}>Cancelar</button>

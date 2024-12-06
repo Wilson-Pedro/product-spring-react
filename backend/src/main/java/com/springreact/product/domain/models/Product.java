@@ -2,6 +2,8 @@ package com.springreact.product.domain.models;
 
 import java.io.Serializable;
 
+import com.springreact.product.domain.dto.ProductDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +33,13 @@ public class Product implements Serializable {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
+	}
+	
+	public Product(ProductDTO productDTO) {
+		this.id = productDTO.getId();
+		this.name = productDTO.getName();
+		this.price = productDTO.getPrice();
+		this.quantity = productDTO.getQuantity();
 	}
 
 	public Integer getId() {

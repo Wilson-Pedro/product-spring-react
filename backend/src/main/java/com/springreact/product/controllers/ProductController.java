@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springreact.product.domain.dto.ProductDTO;
 import com.springreact.product.domain.models.Product;
 import com.springreact.product.servicies.ProductService;
 
@@ -27,13 +28,15 @@ public class ProductController {
 	private ProductService productService;
 	
 	@PostMapping("/")
-	public ResponseEntity<Product> save(@RequestBody Product product) {
-		return ResponseEntity.ok(productService.save(product));
+	public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
+		Product productSaved = productService.save(new Product(productDTO));
+		return ResponseEntity.ok(new ProductDTO(productSaved));
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Product>> findAll() {
-		return ResponseEntity.ok(productService.findAll());
+	public ResponseEntity<List<ProductDTO>> findAll() {
+		List<Product> products = productService.findAll();
+		return ResponseEntity.ok(products.stream().map(x -> new ProductDTO(x)).toList());
 	}
 	
 	@GetMapping("/{id}")
@@ -41,13 +44,15 @@ public class ProductController {
 		if(productService.findById(id).isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product Not Found");
 		}
-		return ResponseEntity.ok(productService.findById(id).get());
+		Product productFinded = productService.findById(id).get();
+		return ResponseEntity.ok(new ProductDTO(productFinded));
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Product> update(
-			@RequestBody Product product, @PathVariable Integer id) {
-		return ResponseEntity.ok(productService.update(product, id));
+	public ResponseEntity<ProductDTO> update(
+			@RequestBody ProductDTO productDTO, @PathVariable Integer id) {
+		Product productUpdated = productService.update(productDTO, id);
+		return ResponseEntity.ok(new ProductDTO(productUpdated));
 	}
 	
 	@DeleteMapping("/{id}")

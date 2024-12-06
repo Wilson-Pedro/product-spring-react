@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springreact.product.domain.dto.ProductDTO;
 import com.springreact.product.domain.models.Product;
 import com.springreact.product.repositories.ProductRepository;
 import com.springreact.product.servicies.ProductService;
@@ -32,12 +33,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product update(Product product, Integer id) {
+	public Product update(ProductDTO productDTO, Integer id) {
 		Product producutUpdated = findById(id).get();
 		producutUpdated.setId(id);
-		producutUpdated.setName(product.getName());
-		producutUpdated.setPrice(product.getPrice());
-		producutUpdated.setQuantity(product.getQuantity());
+		producutUpdated.setName(productDTO.getName());
+		producutUpdated.setPrice(productDTO.getPrice());
+		producutUpdated.setQuantity(productDTO.getQuantity());
 		return productRepository.save(producutUpdated);
 	}
 

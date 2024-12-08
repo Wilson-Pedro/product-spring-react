@@ -40,11 +40,8 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> findById(@PathVariable Integer id) {
-		if(productService.findById(id).isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product Not Found");
-		}
-		Product productFinded = productService.findById(id).get();
+	public ResponseEntity<ProductDTO> findById(@PathVariable Integer id) {
+		Product productFinded = productService.findById(id);
 		return ResponseEntity.ok(new ProductDTO(productFinded));
 	}
 	

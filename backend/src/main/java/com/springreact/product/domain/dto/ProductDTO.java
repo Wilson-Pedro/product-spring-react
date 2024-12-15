@@ -1,5 +1,7 @@
 package com.springreact.product.domain.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.springreact.product.domain.models.Product;
 
 public class ProductDTO {
@@ -11,6 +13,8 @@ public class ProductDTO {
 	private String price;
 	
 	private String quantity;
+	
+	private MultipartFile image;
 	
 	public ProductDTO() {
 	}
@@ -52,5 +56,13 @@ public class ProductDTO {
 
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
+	}
+
+	public MultipartFile getImage() {
+		return image;
+	}
+
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
 }

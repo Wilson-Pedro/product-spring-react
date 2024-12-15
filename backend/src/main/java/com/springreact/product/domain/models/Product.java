@@ -2,6 +2,8 @@ package com.springreact.product.domain.models;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.springreact.product.domain.dto.ProductDTO;
 
 import jakarta.persistence.Entity;

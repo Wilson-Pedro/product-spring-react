@@ -1,0 +1,14 @@
+.divInput {
+    height: 100%;
+    margin-top: 12%;
+}
+
+.input {
+    border: none;
+    background-color: rgb(225, 225, 225);
+    padding: 10px;
+}
+
+.label {
+    font-weight: 600;
+}

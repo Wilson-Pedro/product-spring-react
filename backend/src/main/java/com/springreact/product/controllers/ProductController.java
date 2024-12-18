@@ -29,7 +29,9 @@ public class ProductController {
 	
 	@PostMapping("/")
 	public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
+		System.out.println("ProductDTO: " + productDTO);
 		Product productSaved = productService.save(new Product(productDTO));
+		System.out.println("Product: " + productSaved);
 		return ResponseEntity.ok(new ProductDTO(productSaved));
 	}
 	

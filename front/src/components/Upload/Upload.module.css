@@ -1,0 +1,17 @@
+.divInput {
+    height: 100%;
+    display: flex;
+    margin-top: 12%;
+}
+
+.input {
+    border: .5px black solid;
+    background-color: rgb(225, 225, 225);
+    padding: 10px;
+    margin-right: 1%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btn {
+    cursor: pointer;
+}

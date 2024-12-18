@@ -2,8 +2,6 @@ package com.springreact.product.domain.models;
 
 import java.io.Serializable;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.springreact.product.domain.dto.ProductDTO;
 
 import jakarta.persistence.Entity;
@@ -27,14 +25,17 @@ public class Product implements Serializable {
 	
 	private String quantity;
 	
+	private String imageName;
+	
 	public Product() {
 	}
 	
-	public Product(Integer id, String name, String price, String quantity) {
+	public Product(Integer id, String name, String price, String quantity, String imageName) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
+		this.imageName = imageName;
 	}
 	
 	public Product(ProductDTO productDTO) {
@@ -42,6 +43,7 @@ public class Product implements Serializable {
 		this.name = productDTO.getName();
 		this.price = productDTO.getPrice();
 		this.quantity = productDTO.getQuantity();
+		this.imageName = productDTO.getImageName();
 	}
 
 	public Integer getId() {
@@ -74,5 +76,19 @@ public class Product implements Serializable {
 	
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity + ", imageName="
+				+ imageName + "]";
 	}
 }

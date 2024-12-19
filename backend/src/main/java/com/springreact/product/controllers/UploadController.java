@@ -26,7 +26,7 @@ public class UploadController {
 	@Autowired
 	UploadService uploadService;
 	
-	private final String folder = "C:\\spring-react\\product-react-crud\\front\\images";
+	private final String folder = "C:\\spring-react\\product-react-crud\\front\\public\\img";
 	
 	@PostMapping("/image")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {

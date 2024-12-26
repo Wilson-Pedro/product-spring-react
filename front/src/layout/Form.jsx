@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from './Form.module.css';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input/Input';
-//import Upload from '../components/Upload/Upload';
 
 export default function Form({ handleSubmit, productData }) {
 
@@ -44,10 +43,6 @@ export default function Form({ handleSubmit, productData }) {
         }
     }
 
-    // const fatherToChild = (data) => {
-    //     setImageName(data);
-    // }
-
     function handleChange(e) {
         setProduct({ ...product, [e.target.name]: e.target.value })
     }
@@ -62,7 +57,7 @@ export default function Form({ handleSubmit, productData }) {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.formContainer}>
             <form onSubmit={submit} className={styles.form} >
                 <Input
                     label="Product Name" 
@@ -95,9 +90,12 @@ export default function Form({ handleSubmit, productData }) {
                         type="file" 
                         onChange={handleFileChange} />
                 </div>
-                <button className={styles.button}>Cadastrar</button>
+                {/* <button className={styles.button}>Cadastrar</button> */}
             </form>
-            <div className={styles.divBtn}><button className={styles.button} onClick={() => goBack()}>Cancelar</button></div>
+            <div className={styles.divBtn}>
+                <button className={`${styles.button} ${styles.btnCadastrar}`} >Cadastrar</button>
+                <button className={`${styles.button} ${styles.btnCancelar}`} onClick={() => goBack()}>Cancelar</button>
+            </div>
         </div>
     )
 }

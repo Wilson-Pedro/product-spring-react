@@ -29,37 +29,40 @@ export default function FormEdit({ productData, productUpdate }) {
     }
 
     return (
-        <form onSubmit={update} className={styles.form} >
-            <div>
-                <h1>Product Edit</h1>
+        <div className={styles.formContainer}>
+            <form onSubmit={update} className={styles.form} >
+                {/* <div>
+                    <h1>Product Edit</h1>
+                </div> */}
+                <Input
+                    label="Product Name"
+                    type="text"
+                    name="name"
+                    placeholder="product name"
+                    onChange={handleChange}
+                    value={product.name || ''}
+                />
+                <Input
+                    label="Price"
+                    type="text"
+                    name="price"
+                    placeholder="price"
+                    onChange={handleChange}
+                    value={product.price || ''}
+                />
+                <Input
+                    label="Quantity"
+                    type="text"
+                    name="quantity"
+                    placeholder="quantity"
+                    onChange={handleChange}
+                    value={product.quantity || ''}
+                />
+            </form>
+            <div className={styles.divBtn}>
+                <button className={`${styles.button} ${styles.btnCadastrar}`} >Atualizar</button>
+                <button className={`${styles.button} ${styles.btnCancelar}`} onClick={() => goBack()}>Voltar</button>
             </div>
-            <Input
-                label="Product Name" 
-                type="text"
-                name="name"
-                placeholder="product name"
-                onChange={handleChange}
-                value={product.name || ''}
-            />
-            <Input
-                label="Price" 
-                type="text"
-                name="price"
-                placeholder="price"
-                onChange={handleChange}
-                value={product.price || ''}
-            />
-            <Input
-                label="Quantity" 
-                type="text"
-                name="quantity"
-                placeholder="quantity"
-                onChange={handleChange}
-                value={product.quantity || ''}
-            />
-
-            <button className={styles.button}>Atualizar</button>
-            <button className={styles.button} onClick={() => goBack()}>Voltar</button>
-        </form>
+        </div>
     )
 }

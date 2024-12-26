@@ -13,7 +13,10 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            <div>
+            <div className={styles.bar}>
+                Product CRUD
+            </div>
+            <div className={styles.divBtn}>
                 <button onClick={goToProductRegister} className={styles.button}>Cadastrar</button>
             </div>
             <div className={styles.divTable}>

@@ -12,6 +12,7 @@ export default function Info() {
     const { product } = location.state || {};
 
     const imagePath = `${process.env.PUBLIC_URL}/img/${product.imageName}`;
+    const anotherImagePath = `${process.env.PUBLIC_URL}/img/Computer.jpg`;
 
     function goToHome() {
         navigate("/");
@@ -23,7 +24,11 @@ export default function Info() {
                 <i onClick={goToHome}><IoArrowBackCircle /></i>
             </div>
             <div className={styles.imgDiv}>
-                <img src={imagePath} />
+                {!imagePath ? (
+                    <img src={imagePath} />
+                ) : (
+                    <img src={anotherImagePath} />
+                )}
             </div>
             <div>
                 <p>Product name: <span>{product.name || ''}</span></p>

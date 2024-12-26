@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './EditProduct.module.css';
+import styles from './ProductRegister.module.css'
 import Form from '../layout/Form';
 
 export default function ProductRegister() {
@@ -18,6 +18,9 @@ export default function ProductRegister() {
 
     return(
         <div className={styles.container}>
+            <div className={styles.bar}>
+                Product Register
+            </div>
             <Form handleSubmit={productRegister} />
         </div>
     )

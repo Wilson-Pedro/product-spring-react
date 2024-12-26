@@ -1,9 +1,13 @@
-.container {
-    width: 100%;
+.formContainer {
+    width: 28%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: 2px solid black;
+    background-color: rgba(198, 198, 198, 0.122);
+    margin-top: 5%;
+    border-radius: 8px;
 }
 
 .form {
@@ -30,6 +34,7 @@
 
 .divBtn {
     width: 13%;
+    padding: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,15 +42,28 @@
 }
 
 .button {
-    background-color: rgb(48, 210, 48);
     color: white;
     font-weight: bold;
-    padding: 6%;
+    padding: 20%;
     margin: 5%;
     cursor: pointer;
     flex-direction: row;
+    border: none;
+    border-radius: 5px;
 }
 
-.button:hover {
+.btnCadastrar {
+    background-color: rgb(48, 210, 48);
+}
+
+.btnCadastrar:hover {
     background-color: rgb(20, 93, 20);
+}
+
+.btnCancelar {
+    background-color: rgb(235, 29, 29);
+}
+
+.btnCancelar:hover {
+    background-color: rgb(158, 20, 20);
 }

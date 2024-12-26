@@ -22,6 +22,9 @@ export default function EditProduct() {
 
     return(
         <div className={styles.container}>
+            <div className={styles.bar}>
+                Product Edit
+            </div>
             <FormEdit 
                 productData={product}
                 productUpdate={updateProduct}

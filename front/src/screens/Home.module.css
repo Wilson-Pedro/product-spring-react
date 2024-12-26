@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     width: 100%;
     height: 100%;
@@ -6,24 +11,43 @@
     align-items: center;
     flex-direction: column;
 }
-
+/* 
 .container div {
     margin-top: 5%;
-}
+} */
 
 .divTable {
     width: 90%;
+    margin-top: 5%;
+}
+
+.divBtn {
+    margin-top: 5%;
 }
 
 .button {
     background-color: rgb(48, 210, 48);
     color: white;
     font-weight: bold;
-    padding: 6%;
+    padding: 20%;
     margin: 5%;
     cursor: pointer;
+    flex-direction: row;
+    border: none;
+    border-radius: 5px;
 }
 
 .button:hover {
     background-color: rgb(20, 93, 20);
+}
+
+.bar {
+    width: 98%;
+    height: 10%;
+    padding: 1%;
+    background-color: rgb(47, 47, 47);
+    text-align: center;
+    color: white;
+    font-size: 130%;
+    font-weight: bold;
 }

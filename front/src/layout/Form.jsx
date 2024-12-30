@@ -93,7 +93,7 @@ export default function Form({ handleSubmit, productData }) {
                 {/* <button className={styles.button}>Cadastrar</button> */}
             </form>
             <div className={styles.divBtn}>
-                <button className={`${styles.button} ${styles.btnCadastrar}`} >Cadastrar</button>
+                <button className={`${styles.button} ${styles.btnCadastrar}`} onClick={submit} >Cadastrar</button>
                 <button className={`${styles.button} ${styles.btnCancelar}`} onClick={() => goBack()}>Cancelar</button>
             </div>
         </div>

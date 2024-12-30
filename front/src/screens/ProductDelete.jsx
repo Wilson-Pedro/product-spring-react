@@ -23,11 +23,14 @@ export default function ProductDelete() {
 
     return (
         <div className={styles.container}>
+            <div className={styles.bar}>
+                Product Delete
+            </div>
             <div className={styles.container2}>
                 <h2>Tem certeza que quer deletar? </h2>
                 <div className={styles.divBtn}>
-                    <button className={styles.button} onClick={() => deleteProduct()}>Deletar</button>
-                    <button className={styles.button} onClick={() => goBack()}>Cancelar</button>
+                    <button className={`${styles.button} ${styles.btnCadastrar}`}  onClick={() => deleteProduct()}>Deletar</button>
+                    <button className={`${styles.button} ${styles.btnCancelar}`} onClick={() => goBack()}>Cancelar</button>
                 </div>
             </div>
         </div>

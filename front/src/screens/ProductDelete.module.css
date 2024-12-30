@@ -4,32 +4,65 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     border: 1px black solid;
     margin: auto;
     padding: 1.5%;
     margin-top: 13%;
+    background-color: rgba(179, 178, 178, 0.127);
+    border-radius: 8px;
 }
 
 .divBtn {
-    width: 100%;
-    height: 100%;
+    width: 13%;
+    padding: 10%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .button {
-    background-color: rgb(48, 210, 48);
     color: white;
     font-weight: bold;
-    padding: 4%;
-    margin: 5%;
+    padding: 30%;
+    margin: 20%;
     cursor: pointer;
+    flex-direction: row;
+    border: none;
     border-radius: 5px;
 }
 
-.button:hover {
+.btnCadastrar {
+    background-color: rgb(48, 210, 48);
+}
+
+.btnCadastrar:hover {
     background-color: rgb(20, 93, 20);
+}
+
+.btnCancelar {
+    background-color: rgb(235, 29, 29);
+}
+
+.btnCancelar:hover {
+    background-color: rgb(158, 20, 20);
+}
+
+.bar {
+    width: 98%;
+    height: 10%;
+    padding: 1%;
+    background-color: rgb(47, 47, 47);
+    text-align: center;
+    color: white;
+    font-size: 130%;
+    font-weight: bold;
 }

@@ -24,10 +24,10 @@ export default function Info() {
                 <i onClick={goToHome}><IoArrowBackCircle /></i>
             </div>
             <div className={styles.imgDiv}>
-                {!imagePath ? (
-                    <img src={imagePath} />
+                {imagePath ? (
+                    <img src={imagePath} alt="image of product" />
                 ) : (
-                    <img src={anotherImagePath} />
+                    <img src={anotherImagePath} alt="image of product"  />
                 )}
             </div>
             <div>

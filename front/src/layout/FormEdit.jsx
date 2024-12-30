@@ -60,7 +60,7 @@ export default function FormEdit({ productData, productUpdate }) {
                 />
             </form>
             <div className={styles.divBtn}>
-                <button className={`${styles.button} ${styles.btnCadastrar}`} >Atualizar</button>
+                <button className={`${styles.button} ${styles.btnCadastrar}`} onClick={update} >Atualizar</button>
                 <button className={`${styles.button} ${styles.btnCancelar}`} onClick={() => goBack()}>Voltar</button>
             </div>
         </div>

@@ -6,4 +6,5 @@ import com.springreact.product.domain.models.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
+	boolean existsByName(String name);
 }

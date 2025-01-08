@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from './Form.module.css';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input/Input';
+import axios from "axios";
 
 export default function Form({ handleSubmit, productData }) {
 
@@ -9,6 +10,28 @@ export default function Form({ handleSubmit, productData }) {
     const [selectFile, setSelectFile] = useState(null);
 
     const navigate = useNavigate();
+
+    function productRegister(product) {
+        axios.post("http://localhost:8080/products/", product, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => {
+            console.log("Product registed sucessfully", response.data);
+            setErrorMessage('');
+            navigate("/");
+        })
+        .catch((error) => {
+            if(error.response && error.response.data) {
+                setErrorMessage(error.response.data.title || "Error ocurred during register product")
+                alert(error.response.data.title);
+            } else {
+                setErrorMessage("Network error or unexpected error ocurred")
+            }
+            console.log(error)
+        });
+    }
 
     const submit = (e) => {
         e.preventDefault();
@@ -18,9 +41,7 @@ export default function Form({ handleSubmit, productData }) {
         if(selectFile != null) {
             uploadImage(selectFile);
         }
-        handleSubmit(product)
-        setProduct([])
-        navigate("/")
+        productRegister(product)
     }
 
     function uploadImage(selectFile) {
@@ -58,6 +79,7 @@ export default function Form({ handleSubmit, productData }) {
 
     return (
         <div className={styles.formContainer}>
+        {errorMessage}
             <form onSubmit={submit} className={styles.form} >
                 <Input
                     label="Product Name" 

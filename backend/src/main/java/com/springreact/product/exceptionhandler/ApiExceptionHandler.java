@@ -27,7 +27,7 @@ public class ApiExceptionHandler {
 	}
 	
 	@ExceptionHandler(ExistingProductException.class)
-	public ResponseEntity<Problam> productExistsE() {
+	public ResponseEntity<Problam> productExists() {
 		
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		

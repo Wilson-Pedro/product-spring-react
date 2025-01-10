@@ -1,16 +1,14 @@
 package com.springreact.product.servicies;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.springreact.product.exceptions.FieldEmptyException;
 
 @Service
 public class UploadService {
@@ -18,35 +16,27 @@ public class UploadService {
 	public static int KB = 1024 * 1;
 	public static int MB = 1024 * KB;
 
-	public void upload(String folder, String fileName, InputStream uploadedFile) throws FileNotFoundException {
-		String filePath = folder + "/" + fileName;
-		File newFile = new File(filePath);
-		FileOutputStream exit = new FileOutputStream(newFile);
-		copy(uploadedFile, exit);
-		System.out.println(fileName);
-	}
-	
-	public void copy(InputStream source, OutputStream destiny) {
-		int bite = 0;
-		byte[] maxLength = new byte[MB * 5];
-		
+	public String upload(String folder, String fileName, MultipartFile file) throws Exception {
+		String filename = "";
 		try {
-			while((bite = source.read(maxLength)) >= 0) {
-				destiny.write(maxLength, 0, bite);
-			}
-		} catch(IOException e) {
-			System.out.println("Error" + e.getMessage());
+			validateUpload(file);
+
+	        filename = file.getOriginalFilename();
+	        Path filePath = Paths.get(folder, filename);
+
+	        Files.createDirectories(filePath.getParent());
+	        Files.write(filePath, file.getBytes());
+	        return filename;
+	        
+		} catch(IOException err) {
+			System.out.println(err);
 		}
+		return filename;
 	}
 	
-	public void saveInFOlder(String folder, String fileName, File file) {
-//		Path folderPath = Paths.get(folder);
-//		if(!Files.deleteIfExists(folderPath)) {
-//			Files.createDirectories(folderPath);
-//		}
-//		
-//		Path filePath = Paths.get(folder, fileName);
-//		
-//		Files.write(filePath, filePath.getb());
+	public void validateUpload(MultipartFile file) {
+        if (file.isEmpty()) {
+            throw new FieldEmptyException();
+        }
 	}
 }

@@ -30,23 +30,16 @@ public class UploadController {
 	
 	@PostMapping("/image")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
-        try {
-            if (file.isEmpty()) {
-                return ResponseEntity.badRequest().body("Arquivo vazio");
-            }
 
-            String filename = file.getOriginalFilename();
-            Path filePath = Paths.get(folder, filename);
-            
-            //uploadService.upload(folder, filename, file.getInputStream());
+        String filename = "";
+		try {
+			filename = uploadService.upload(folder, folder, file);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return ResponseEntity.ok("Imagem enviada com sucesso: " + filename);
 
-            Files.createDirectories(filePath.getParent());
-            Files.write(filePath, file.getBytes());
-
-            return ResponseEntity.ok("Imagem enviada com sucesso: " + filename);
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao enviar arquivo");
-        }
     }
 	
 }

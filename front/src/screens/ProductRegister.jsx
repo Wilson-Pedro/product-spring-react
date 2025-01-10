@@ -2,8 +2,11 @@ import React from "react";
 import styles from './ProductRegister.module.css'
 import Form from '../layout/Form';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductRegister() {
+
+    const navigate = useNavigate();
 
     function productRegister(product) {
         axios.post("http://localhost:8080/products/", product, {
@@ -13,7 +16,7 @@ export default function ProductRegister() {
         })
         .then((response) => {
             console.log("Product registed sucessfully", response.data);
-            alert('');
+            navigate("/");
         })
         .catch((error) => {
             if(error.response && error.response.data) {

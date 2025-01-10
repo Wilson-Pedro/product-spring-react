@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.springreact.product.domain.dto.ProductDTO;
 import com.springreact.product.domain.models.Product;
 import com.springreact.product.exceptions.ExistingProductException;
+import com.springreact.product.exceptions.FieldEmptyException;
 import com.springreact.product.exceptions.ProductNotFoundException;
 import com.springreact.product.repositories.ProductRepository;
 import com.springreact.product.servicies.ProductService;
@@ -20,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product save(Product product) {
-		validadeProduct(product.getName());
+		validadeProduct(product);
 		return productRepository.save(product);
 	}
 
@@ -49,7 +50,13 @@ public class ProductServiceImpl implements ProductService {
 		productRepository.deleteById(id);
 	}
 
-	private void validadeProduct(String name) {
-		if(productRepository.existsByName(name)) throw new ExistingProductException();
+	private void validadeProduct(Product product) {
+		if(product.getName() == "" || product.getQuantity() == null || 
+				product.getPrice() == null || product.getImageName() == "") {
+			throw new FieldEmptyException();
+		}
+		else if(productRepository.existsByName(product.getName())) {
+			throw new ExistingProductException();
+		}
 	}
 }

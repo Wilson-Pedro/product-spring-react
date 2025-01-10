@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function Table() {
 
-    const product = {
-        name: 'Computer',
-        price: 2500,
-        quantity: 1,
-        imageName: 'Computer.jpg'
-    }
+    // const product = {
+    //     name: 'Computer',
+    //     price: 2500,
+    //     quantity: 1,
+    //     imageName: 'Computer.jpg'
+    // }
 
     const [products, setProducts] = useState([]);
 
@@ -57,7 +57,7 @@ export default function Table() {
             </tr>
         </thead>
         <tbody>
-            <tr>
+            {/* <tr>
                 <th>1</th>
                 <th>Computer</th>
                 <th>2500</th>
@@ -65,7 +65,7 @@ export default function Table() {
                 <th className={styles.icon} onClick={() => goToInfo(product)}><FaCircleInfo /></th>
                 <th className={styles.icon} onClick={() => goToProductEdit(product)}><FaEdit /></th>
                 <th className={styles.icon} onClick={() => goToProductDelete(product.id)}><FaTrashAlt /></th>
-            </tr>
+            </tr> */}
             {products.map((product, index) => (
                 <tr key={product.id}>
                     <th>{index+1}</th>

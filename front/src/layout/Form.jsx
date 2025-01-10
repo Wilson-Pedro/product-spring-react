@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styles from './Form.module.css';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input/Input';
-import axios from "axios";
-
 export default function Form({ handleSubmit, productData }) {
 
     const [product, setProduct] = useState(productData || {});
@@ -11,35 +9,15 @@ export default function Form({ handleSubmit, productData }) {
 
     const navigate = useNavigate();
 
-    function productRegister(product) {
-        axios.post("http://localhost:8080/products/", product, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response) => {
-            console.log("Product registed sucessfully", response.data);
-            navigate("/");
-        })
-        .catch((error) => {
-            if(error.response && error.response.data) {
-                alert(error.response.data.title);
-            } else {
-                alert("Network error or unexpected error ocurred")
-            }
-            console.log(error)
-        });
-    }
 
     const submit = (e) => {
         e.preventDefault();
 
         setProduct({ ...product, [e.target.imageName]: selectFile.name  })
-
+        handleSubmit(product)
         if(selectFile != null) {
             uploadImage(selectFile);
         }
-        productRegister(product)
     }
 
     function uploadImage(selectFile) {

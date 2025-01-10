@@ -17,3 +17,33 @@
     height: auto;
     object-fit: cover;
 }
+
+.bar {
+    width: 98%;
+    height: 10%;
+    padding: 1%;
+    background-color: rgb(47, 47, 47);
+    color: white;
+    font-size: 130%;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+.infoDiv {
+    margin-top: 5%;
+    width: 20%;
+    font-size: 110%;
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: rgba(191, 191, 191, 0.324);
+}
+
+.infoDiv p {
+    font-weight: bold;
+    margin: 5%;
+}
+
+.infoDiv span {
+    font-weight: normal;
+}

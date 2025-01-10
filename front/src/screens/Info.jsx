@@ -20,8 +20,11 @@ export default function Info() {
 
     return(
         <div className={styles.container}>
-            <div>
-                <i onClick={goToHome}><IoArrowBackCircle /></i>
+            <div className={styles.bar}>
+                <div>
+                    <i onClick={goToHome}><IoArrowBackCircle /></i>
+                </div>
+                <div>Info about Product</div>
             </div>
             <div className={styles.imgDiv}>
                 {imagePath ? (
@@ -30,7 +33,7 @@ export default function Info() {
                     <img src={anotherImagePath} alt="image of product"  />
                 )}
             </div>
-            <div>
+            <div className={styles.infoDiv}>
                 <p>Product name: <span>{product.name || ''}</span></p>
                 <p>Price: <span>{product.price || ''}</span></p>
                 <p>Quantity: <span>{product.quantity || ''}</span></p>

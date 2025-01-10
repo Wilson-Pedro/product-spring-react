@@ -19,15 +19,13 @@ export default function Form({ handleSubmit, productData }) {
         })
         .then((response) => {
             console.log("Product registed sucessfully", response.data);
-            setErrorMessage('');
             navigate("/");
         })
         .catch((error) => {
             if(error.response && error.response.data) {
-                setErrorMessage(error.response.data.title || "Error ocurred during register product")
                 alert(error.response.data.title);
             } else {
-                setErrorMessage("Network error or unexpected error ocurred")
+                alert("Network error or unexpected error ocurred")
             }
             console.log(error)
         });
@@ -79,7 +77,6 @@ export default function Form({ handleSubmit, productData }) {
 
     return (
         <div className={styles.formContainer}>
-        {errorMessage}
             <form onSubmit={submit} className={styles.form} >
                 <Input
                     label="Product Name" 

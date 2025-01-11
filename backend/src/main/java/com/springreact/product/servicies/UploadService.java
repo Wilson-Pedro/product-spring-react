@@ -35,6 +35,7 @@ public class UploadService {
 	}
 	
 	public void validateUpload(MultipartFile file) {
+		System.out.println("validateUpload");
         if (file.isEmpty()) {
             throw new FieldEmptyException();
         }

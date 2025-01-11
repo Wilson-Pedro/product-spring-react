@@ -9,20 +9,20 @@ export default function Form({ handleSubmit, productData }) {
 
     const navigate = useNavigate();
 
-
     const submit = (e) => {
         e.preventDefault();
 
-        setProduct({ ...product, [e.target.imageName]: selectFile.name  })
-        handleSubmit(product)
         if(selectFile != null) {
-            uploadImage(selectFile);
+            setProduct({ ...product, [e.target.imageName]: selectFile.name  })
+        } else {
+            setProduct({ ...product, [e.target.imageName]: null  })
         }
+        uploadImage(selectFile);
     }
 
     function uploadImage(selectFile) {
         if(!selectFile) {
-            alert('Por favor selecione um arquivo')
+            alert('Please, select one file.')
             return
         } else {
             const formData = new FormData();
@@ -33,6 +33,7 @@ export default function Form({ handleSubmit, productData }) {
                     method: 'POST',
                     body: formData,
                 });
+                handleSubmit(product);
             } catch(error) {
                 console.log("Error ao enviar arquivo");
                 alert("Error ao enviar arquivo");
@@ -45,8 +46,10 @@ export default function Form({ handleSubmit, productData }) {
     }
 
     const handleFileChange = async (e) => {
-        setSelectFile(e.target.files[0]);
-        setProduct({ ...product, [e.target.name]: e.target.files[0].name })
+        if(e.target.files[0] != null) {
+            setSelectFile(e.target.files[0]);
+            setProduct({ ...product, [e.target.name]: e.target.files[0].name })
+        }
     }
 
     function goBack() {

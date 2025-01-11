@@ -32,6 +32,7 @@ public class UploadController {
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
 
         String filename = "";
+        System.out.println("uploadImage");
 		try {
 			filename = uploadService.upload(folder, folder, file);
 		} catch (Exception e) {

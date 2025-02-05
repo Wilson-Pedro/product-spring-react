@@ -5,6 +5,8 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaCircleInfo } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
+const { REACT_APP_API_URL } = process.env;
+
 export default function Table() {
 
     // const product = {
@@ -31,7 +33,7 @@ export default function Table() {
     }
 
     useEffect(() => {
-        fetch("http://localhost:8080/products", {
+        fetch(`${REACT_APP_API_URL}/products`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

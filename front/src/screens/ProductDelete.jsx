@@ -2,6 +2,8 @@ import React from "react";
 import styles from './ProductDelete.module.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+const { REACT_APP_API_URL } = process.env;
+
 export default function ProductDelete() {
 
     const location = useLocation();
@@ -10,7 +12,7 @@ export default function ProductDelete() {
     const { id } = location.state || 1;
 
     function deleteProduct() {
-        fetch(`http://localhost:8080/products/${id}`, {
+        fetch(`${REACT_APP_API_URL}/products/${id}`, {
             method: 'DELETE',
         }).then((resp) => resp.json()).catch((err) => console.log(err));
         

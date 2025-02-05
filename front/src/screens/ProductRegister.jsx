@@ -4,12 +4,14 @@ import Form from '../layout/Form';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const { REACT_APP_API_URL } = process.env;
+
 export default function ProductRegister() {
 
     const navigate = useNavigate();
 
     function productRegister(product) {
-        axios.post("http://localhost:8080/products/", product, {
+        axios.post(`${REACT_APP_API_URL}/products/`, product, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -20,6 +22,7 @@ export default function ProductRegister() {
         })
         .catch((error) => {
             if(error.response && error.response.data) {
+                //alert(`${REACT_APP_API_URL}`)
                 alert(error.response.data.title || "Error ocurred during register product")
             } else {
                 alert("Network error or unexpected error ocurred")

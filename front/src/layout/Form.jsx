@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styles from './Form.module.css';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input/Input';
+
+const { REACT_APP_API_URL } = process.env;
+
 export default function Form({ handleSubmit, productData }) {
 
     const [product, setProduct] = useState(productData || {});
@@ -18,6 +21,7 @@ export default function Form({ handleSubmit, productData }) {
             setProduct({ ...product, [e.target.imageName]: null  })
         }
         uploadImage(selectFile);
+        // handleSubmit(product);
     }
 
     function uploadImage(selectFile) {
@@ -29,7 +33,7 @@ export default function Form({ handleSubmit, productData }) {
             formData.append("file", selectFile);
 
             try {
-                fetch("http://localhost:8080/upload/image", {
+                fetch(`${REACT_APP_API_URL}/upload/s3/`, {
                     method: 'POST',
                     body: formData,
                 });

@@ -3,7 +3,6 @@ package com.springreact.product.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +21,7 @@ import com.springreact.product.servicies.ProductService;
 @RestController
 @RequestMapping("/products")
 @CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://mybucketproductcrud.s3-website-us-east-1.amazonaws.com")
 public class ProductController {
 
 	@Autowired
@@ -29,10 +29,13 @@ public class ProductController {
 	
 	@PostMapping("/")
 	public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
-		System.out.println("ProductDTO: " + productDTO);
 		Product productSaved = productService.save(new Product(productDTO));
-		System.out.println("Product: " + productSaved);
 		return ResponseEntity.ok(new ProductDTO(productSaved));
+	}
+
+	@GetMapping("/hello")
+	public String helloWord(){
+		return "Hello, Word!";
 	}
 	
 	@GetMapping

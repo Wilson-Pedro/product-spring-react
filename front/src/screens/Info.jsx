@@ -27,6 +27,7 @@ export default function Info() {
                 <div>Info about Product</div>
             </div>
             <div className={styles.imgDiv}>
+                {/* <img src={anotherImagePath} alt="image of product"  /> */}
                 {imagePath ? (
                     <img src={imagePath} alt="image of product" />
                 ) : (

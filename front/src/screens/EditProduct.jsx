@@ -3,6 +3,8 @@ import styles from './EditProduct.module.css';
 import FormEdit from '../layout/FormEdit';
 import { useLocation } from "react-router-dom";
 
+const { REACT_APP_API_URL } = process.env;
+
 export default function EditProduct() {
 
     const location = useLocation();
@@ -10,7 +12,7 @@ export default function EditProduct() {
 
     function updateProduct(productData) {
 
-        fetch(`http://localhost:8080/products/${productData.id}`, {
+        fetch(`${REACT_APP_API_URL}/products/${productData.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

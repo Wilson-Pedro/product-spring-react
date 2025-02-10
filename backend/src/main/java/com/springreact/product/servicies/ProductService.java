@@ -3,11 +3,12 @@ package com.springreact.product.servicies;
 import java.util.List;
 
 import com.springreact.product.domain.dto.ProductDTO;
+import com.springreact.product.domain.dto.ProductRequestDTO;
 import com.springreact.product.domain.models.Product;
 
 public interface ProductService {
 
-	Product save(Product product);
+	Product save(ProductRequestDTO productDto);
 	
 	List<Product> findAll();
 	

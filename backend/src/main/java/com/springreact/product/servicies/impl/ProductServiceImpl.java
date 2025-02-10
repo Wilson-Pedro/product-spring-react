@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springreact.product.domain.dto.ProductDTO;
+import com.springreact.product.domain.dto.ProductRequestDTO;
 import com.springreact.product.domain.models.Product;
 import com.springreact.product.exceptions.ExistingProductException;
 import com.springreact.product.exceptions.FieldEmptyException;
 import com.springreact.product.exceptions.ProductNotFoundException;
 import com.springreact.product.repositories.ProductRepository;
+import com.springreact.product.servicies.FileStorageService;
 import com.springreact.product.servicies.ProductService;
 
 @Service
@@ -18,9 +20,15 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private FileStorageService fileStorageService;
 
 	@Override
-	public Product save(Product product) {
+	public Product save(ProductRequestDTO productRequestDto) {
+		Product product = new Product(productRequestDto);
+		String imageUrl = fileStorageService.uploadFileInS3(productRequestDto.getMultipartFile());
+		product.setImageUrl(imageUrl);
 		validadeProduct(product);
 		return productRepository.save(product);
 	}
@@ -52,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
 
 	private void validadeProduct(Product product) {
 		if(product.getName() == "" || product.getQuantity() == null || 
-				product.getPrice() == null || product.getImageName() == "") {
+				product.getPrice() == null || product.getImageUrl() == "") {
 			throw new FieldEmptyException();
 		}
 		else if(productRepository.existsByName(product.getName())) {

@@ -10,10 +10,10 @@ export default function ProductRegister() {
 
     const navigate = useNavigate();
 
-    function productRegister(product) {
-        axios.post(`${REACT_APP_API_URL}/products/`, product, {
+    function productRegister(formData) {
+        axios.post(`${REACT_APP_API_URL}/products/`, formData, {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
             },
         })
         .then((response) => {
@@ -22,7 +22,6 @@ export default function ProductRegister() {
         })
         .catch((error) => {
             if(error.response && error.response.data) {
-                //alert(`${REACT_APP_API_URL}`)
                 alert(error.response.data.title || "Error ocurred during register product")
             } else {
                 alert("Network error or unexpected error ocurred")

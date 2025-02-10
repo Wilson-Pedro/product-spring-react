@@ -14,8 +14,8 @@ import com.springreact.product.servicies.UploadService;
 @Service
 public class UploadServiceImpl implements UploadService {
 	
-	public static int KB = 1024 * 1;
-	public static int MB = 1024 * KB;
+	public int KB = 1024 * 1;
+	public int MB = 1024 * KB;
 
 	public String upload(String folder, String fileName, MultipartFile file) throws Exception {
 		String filename = "";

@@ -3,6 +3,8 @@ import styles from './Form.module.css';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input/Input';
 
+const { REACT_APP_API_URL } = process.env;
+
 export default function Form({ handleSubmit, productData }) {
 
     const [product, setProduct] = useState(productData || {});
@@ -14,20 +16,34 @@ export default function Form({ handleSubmit, productData }) {
         e.preventDefault();
 
         if(selectFile != null) {
-            setProduct({ ...product, [e.target.multipartFile]: selectFile  })
+            setProduct({ ...product, [e.target.imageName]: selectFile.name  })
         } else {
-            setProduct({ ...product, [e.target.multipartFile]: null  })
+            setProduct({ ...product, [e.target.imageName]: null  })
         }
-        const formData = new FormData();
-
-        formData.append("name", product.name);
-        formData.append("price", product.price);
-        formData.append("quantity", product.quantity);
-        formData.append("multipartFile", selectFile);
-
-        handleSubmit(formData);
+        uploadImage(selectFile);
+        // handleSubmit(product);
     }
 
+    function uploadImage(selectFile) {
+        if(!selectFile) {
+            alert('Please, select one file.')
+            return
+        } else {
+            const formData = new FormData();
+            formData.append("file", selectFile);
+
+            try {
+                fetch(`${REACT_APP_API_URL}/upload/s3/`, {
+                    method: 'POST',
+                    body: formData,
+                });
+                handleSubmit(product);
+            } catch(error) {
+                console.log("Error ao enviar arquivo");
+                alert("Error ao enviar arquivo");
+            }
+        }
+    }
 
     function handleChange(e) {
         setProduct({ ...product, [e.target.name]: e.target.value })
@@ -36,7 +52,7 @@ export default function Form({ handleSubmit, productData }) {
     const handleFileChange = async (e) => {
         if(e.target.files[0] != null) {
             setSelectFile(e.target.files[0]);
-            //setProduct({ ...product, [e.target.name]: e.target.files[0].name })
+            setProduct({ ...product, [e.target.name]: e.target.files[0].name })
         }
     }
 
@@ -74,7 +90,7 @@ export default function Form({ handleSubmit, productData }) {
                 <div className={styles.divInput}>  
                     <input 
                         className={styles.input} 
-                        name="multipartFile" 
+                        name="imageName" 
                         type="file" 
                         onChange={handleFileChange} />
                 </div>

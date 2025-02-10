@@ -1,8 +1,8 @@
 package com.springreact.product.servicies;
 
-import com.springreact.product.domain.records.FileUpload;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface FileStorageService {
-
-	String upload(FileUpload fileUpload);
+	
+	public String uploadFileInS3(MultipartFile muiltipartFile);
 }

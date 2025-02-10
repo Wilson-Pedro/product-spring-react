@@ -10,18 +10,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.springreact.product.domain.records.FileUpload;
+import com.springreact.product.servicies.FileStorageService;
 
-import io.awspring.cloud.s3.S3Template;
+import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.internal.resource.S3Resource;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 @Service
-public class FileStorageServiceImpl {
-	
-//	@Autowired
-//	private S3Template template;
+public class FileStorageServiceImpl implements FileStorageService {
 	
 	@Value("${aws.endpoint}")
 	private String endpoint;
@@ -31,21 +27,8 @@ public class FileStorageServiceImpl {
 	
 	@Value("${aws.bucket-name}")
 	private String bucketName;
-
-//	@Override
-//	public String upload(FileUpload fileUpload) {
-//		try (var file = fileUpload.data().getInputStream()) {
-//			String key = UUID.randomUUID().toString() + "-" + fileUpload.data().getOriginalFilename();
-//			System.out.println("Chegou aqui");
-//			System.out.println(file.toString());
-//			S3Resource uploaded = template.upload(bucketName, key, file);
-//			return key;
-//		} catch(IOException err) {
-//			 throw new RuntimeException("Não foi possivel realizar o upload do documento");
-//		}
-//	}
 	
-	public String uploadFile(MultipartFile muiltipartFile) {
+	public String uploadFileInS3(MultipartFile muiltipartFile) {
 		String fileName = UUID.randomUUID().toString() + "-" + muiltipartFile.getOriginalFilename();
 		File fileObj = convertMultiPartFileToFile(muiltipartFile);
 		
@@ -54,9 +37,9 @@ public class FileStorageServiceImpl {
 				.key(fileName)
 				.build();
 		
-		s3Client.putObject(objectRequest, fileObj.toPath());
-		
-		return endpoint + "/" + bucketName + "/" + fileName;
+		s3Client.putObject(objectRequest, RequestBody.fromFile(fileObj));
+		String imageUrl = endpoint + "/" + bucketName + "/" + fileName;
+		return imageUrl;
 	}
 	
 	private File convertMultiPartFileToFile(MultipartFile muiltipartFile) {
@@ -68,5 +51,4 @@ public class FileStorageServiceImpl {
 		}
 		return convertedFile;
 	}
-
 }

@@ -3,6 +3,7 @@ package com.springreact.product.domain.models;
 import java.io.Serializable;
 
 import com.springreact.product.domain.dto.ProductDTO;
+import com.springreact.product.domain.dto.ProductRequestDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,17 +26,17 @@ public class Product implements Serializable {
 	
 	private String quantity;
 	
-	private String imageName;
+	private String imageUrl;
 	
 	public Product() {
 	}
 	
-	public Product(Integer id, String name, String price, String quantity, String imageName) {
+	public Product(Integer id, String name, String price, String quantity, String imageUrl) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
-		this.imageName = imageName;
+		this.imageUrl = imageUrl;
 	}
 	
 	public Product(ProductDTO productDTO) {
@@ -43,7 +44,14 @@ public class Product implements Serializable {
 		this.name = productDTO.getName();
 		this.price = productDTO.getPrice();
 		this.quantity = productDTO.getQuantity();
-		this.imageName = productDTO.getImageName();
+		this.imageUrl = productDTO.getImageUrl();
+	}
+	
+	public Product(ProductRequestDTO productRequestDTO) {
+		this.id = productRequestDTO.getId();
+		this.name = productRequestDTO.getName();
+		this.price = productRequestDTO.getPrice();
+		this.quantity = productRequestDTO.getQuantity();
 	}
 
 	public Integer getId() {
@@ -78,17 +86,17 @@ public class Product implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public String getImageName() {
-		return imageName;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setImageName(String imageName) {
-		this.imageName = imageName;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity + ", imageName="
-				+ imageName + "]";
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity + ", imageUrl="
+				+ imageUrl + "]";
 	}
 }

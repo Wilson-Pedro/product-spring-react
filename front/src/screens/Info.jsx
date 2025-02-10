@@ -10,9 +10,7 @@ export default function Info() {
 
     const location = useLocation();
     const { product } = location.state || {};
-
-    const imagePath = `${process.env.PUBLIC_URL}/img/${product.imageName}`;
-    const anotherImagePath = `${process.env.PUBLIC_URL}/img/Computer.jpg`;
+    console.log(product);
 
     function goToHome() {
         navigate("/");
@@ -27,12 +25,7 @@ export default function Info() {
                 <div>Info about Product</div>
             </div>
             <div className={styles.imgDiv}>
-                {/* <img src={anotherImagePath} alt="image of product"  /> */}
-                {imagePath ? (
-                    <img src={imagePath} alt="image of product" />
-                ) : (
-                    <img src={anotherImagePath} alt="image of product"  />
-                )}
+                <img src={product.imageUrl} alt="image of product"  />
             </div>
             <div className={styles.infoDiv}>
                 <p>Product name: <span>{product.name || ''}</span></p>

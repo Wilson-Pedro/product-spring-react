@@ -1,8 +1,10 @@
 package com.springreact.product.domain.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.springreact.product.domain.models.Product;
 
-public class ProductDTO {
+public class ProductRequestDTO {
 	
 	private Integer id;
 	
@@ -12,25 +14,24 @@ public class ProductDTO {
 	
 	private String quantity;
 	
-	private String imageUrl;
+	private MultipartFile multipartFile;
 	
-	public ProductDTO() {
+	public ProductRequestDTO() {
 	}
 	
-	public ProductDTO(Integer id, String name, String price, String quantity, String imageUrl) {
+	public ProductRequestDTO(Integer id, String name, String price, String quantity, MultipartFile multipartFile) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
-		this.imageUrl = imageUrl;
+		this.multipartFile = multipartFile;
 	}
 
-	public ProductDTO(Product product) {
+	public ProductRequestDTO(Product product) {
 		this.id = product.getId();
 		this.name = product.getName();
 		this.price = product.getPrice();
 		this.quantity = product.getQuantity();
-		this.imageUrl = product.getImageUrl();
 	}
 
 	public Integer getId() {
@@ -65,16 +66,16 @@ public class ProductDTO {
 		this.quantity = quantity;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public MultipartFile getMultipartFile() {
+		return multipartFile;
 	}
 
-	public void setMultipartFile(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setMultipartFile(MultipartFile multipartFile) {
+		this.multipartFile = multipartFile;
 	}
 
 	@Override
 	public String toString() {
-		return "ProductDTO [id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity + ", imageUrl = " + imageUrl;
+		return "ProductDTO [id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity;
 	}
 }
